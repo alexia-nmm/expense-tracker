@@ -42,7 +42,8 @@ categories={
     "2": "Transportation",
     "3": "Entertainment",
     "4": "Shopping",
-    "5": "Other"
+    "5": "Health & Wellness",
+    "6": "Other"
 }
 
 def add_expense():
@@ -61,7 +62,7 @@ def add_expense():
         print("\n Select expense category:")
         for key, value in categories.items():
             print(f"{key}. {value}")
-        category_choice = input("Enter your choice (1-5): ")  
+        category_choice = input("Enter your choice (1-6): ")  
 
         if category_choice in categories:
             expense_category = categories[category_choice]
@@ -304,7 +305,7 @@ def edit_expense():
         print("\n Select expense category:")
         for key, value in categories.items():
             print(f"{key}. {value}")
-        new_category = input(f"Enter your choice (1-5) [{expense[2]}]: ")  
+        new_category = input(f"Enter your choice (1-6) [{expense[2]}]: ")  
 
         if new_category in categories:
             new_category = categories[new_category]
