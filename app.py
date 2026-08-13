@@ -356,6 +356,23 @@ st.markdown(
 def connect_db():
      return sqlite3.connect("expenses.db")
 
+def create_table():
+    connection = connect_db()
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS expenses (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            amount REAL NOT NULL,
+            category TEXT NOT NULL,
+            date TEXT NOT NULL
+        )
+    """)
+
+    connection.commit()
+    connection.close()
+
 def get_expenses():
      connection = connect_db()
      cursor = connection.cursor()   
@@ -473,10 +490,12 @@ def get_image_base64(image_path):
         ).decode()
 
     return encoded_image
-    
+
+create_table() 
 expenses = get_expenses()
 total = calculate_total()
 current_month_total= get_current_month_total()
+category_totals = get_category_totals()
 
 
 if expenses:
@@ -575,8 +594,6 @@ with col4:
 </div>
 """
     )
-
-category_totals = get_category_totals()
 
 if category_totals:
      top_category = category_totals[0]
