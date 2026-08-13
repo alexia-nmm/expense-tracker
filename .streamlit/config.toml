@@ -1,6 +1,8 @@
 [theme]
-primaryColor = "#B784A7"
-backgroundColor = "#FFF9F5"
-secondaryBackgroundColor = "#F5EDEA"
-textColor = "#3D3741"
-font = "sans serif"
+primaryColor = "#EA6FA8"
+backgroundColor = "#FFF9EE"
+secondaryBackgroundColor = "#FDECF3"
+textColor = "#403747"
+
+
+font = "Pixelify Sans:https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap, sans-serif"
