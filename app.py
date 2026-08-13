@@ -345,7 +345,7 @@ with header_col1:
 
 with header_col2:
     st.image(
-        "assets/pixel_cat.jpeg",
+        "assets/pixel_cat.jpg",
         width=120
     )
 st.markdown(
