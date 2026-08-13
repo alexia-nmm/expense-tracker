@@ -59,6 +59,7 @@ h1 {
 }
 
 .metric-value {
+    font-family: "Trebuchet MS", sans-serif;
     font-size: 28px;
     font-weight: 700;
     color: #E54F91;
@@ -127,6 +128,14 @@ button[data-baseweb="tab"][aria-selected="true"] {
 
 input {
     border-radius: 4px !important;
+}
+/* Numeric/date input values */
+input[type="number"],
+input[type="date"] {
+    font-family: "Trebuchet MS", sans-serif !important;
+}
+input {
+    font-family: "Trebuchet MS", sans-serif !important;
 }
 
 
@@ -295,6 +304,29 @@ input {
     color: #756779;
     margin-bottom: 15px;
     font-size: 14px;
+}
+
+.mini-stat-card {
+    background: #FFFDF7;
+    border: 2px solid #E56A9F;
+    border-radius: 5px;
+    padding: 14px 16px;
+    box-shadow: 3px 3px 0px #C99BE8;
+    margin-bottom: 12px;
+}
+
+.mini-stat-label {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 14px;
+    color: #66556E;
+    margin-bottom: 6px;
+}
+
+.mini-stat-value {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #E54F91;
 }
 /* ---------- DATAFRAME ---------- */
 [data-testid="stDataFrame"] [role="columnheader"] {
@@ -607,7 +639,7 @@ with chart_col1:
                     hole=0.5,
                     color_discrete_sequence=pixel_colors
                )
-               fig.update_traces(textinfo='percent', textposition="inside")
+               fig.update_traces(textinfo='percent', textposition="inside", textfont=dict(family="Trebuchet MS", size=14))
                fig.update_layout( height = 500,
                               margin=dict(t=10, b=50, l=10, r=10), 
                               showlegend=True,
@@ -616,7 +648,12 @@ with chart_col1:
                                                        x=0.5, y=0.5, 
                                                        font_size=18,
                                                        font_color="black",
-                                                       showarrow=False)]
+                                                       showarrow=False,
+                                                       font=dict(
+                                                       family="Trebuchet MS",
+                                                                      size=18,
+                                                                      color="#403747"
+                                                                 ))]
                )
 
                st.plotly_chart(fig, use_container_width=True)
@@ -784,18 +821,24 @@ elif active_section == "expenses":
             summary_col1, summary_col2 = st.columns(2)
 
             with summary_col1:
-                st.metric(
-                    "Filtered Total",
-                    f"${filtered_total:.2f}",
-                    border=True
-                )
+                 st.html(
+        f"""
+<div class="mini-stat-card">
+    <div class="mini-stat-label">Filtered Total</div>
+    <div class="mini-stat-value">${filtered_total:.2f}</div>
+</div>
+"""
+    )
 
             with summary_col2:
-                st.metric(
-                    "Results",
-                    len(filtered_expenses),
-                    border=True
-                )
+              st.html(
+        f"""
+<div class="mini-stat-card">
+    <div class="mini-stat-label">Results</div>
+    <div class="mini-stat-value">{len(filtered_expenses)}</div>
+</div>
+"""
+    )  
 
             expense_data = []
 
